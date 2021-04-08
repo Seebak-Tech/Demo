@@ -1,0 +1,9 @@
+{
+ "demo/*.py":{"alternate": "test/{dirname}/{basename}_test.py",
+             "path": "demo/**",
+             "type": "src"
+            },
+  "test/*_test.py":{"alternate": "demo/{}.py",
+                    "path": "demo/**"
+                   }
+}
