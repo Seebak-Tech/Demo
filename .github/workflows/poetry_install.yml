@@ -47,7 +47,7 @@ jobs:
       #              set PYTHONPATH env variable   
       #----------------------------------------------  
     - name: Set PYTHONPATH env variable
-      run: echo "::set-env name=PYTHONPATH::home/runner/work/demo/demo"      
+      run: echo "/home/runner/work/demo/demo" >> $GITHUB_PATH    
       #----------------------------------------------
       #              run test suite   
       #----------------------------------------------  
