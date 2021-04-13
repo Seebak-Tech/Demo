@@ -6,6 +6,7 @@ authors = ["Monica Nataly <nata.moonk@gmail.com>"]
 
 [tool.poetry.dependencies]
 python = "^3.9"
+coverage = "^5.5"
 
 [tool.poetry.dev-dependencies]
 pytest = "^6.2.3"
