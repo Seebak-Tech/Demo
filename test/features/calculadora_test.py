@@ -14,9 +14,9 @@ def test_resta():
     assert calculadora.resta(4, 2) == 2
     
 def test_mult():                                               
-    3     calculadora = Calculadora()                                 
-    2     assert calculadora.mult(2, 2) == 4
+    calculadora = Calculadora()                                 
+    assert calculadora.mult(2, 2) == 4
 
 def test_div():                                               
-    3     calculadora = Calculadora()                                 
-    2     assert calculadora.div(10, 5) == 2
+    calculadora = Calculadora()                                 
+    assert calculadora.div(10, 5) == 2
