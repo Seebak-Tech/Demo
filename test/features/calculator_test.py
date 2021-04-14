@@ -15,10 +15,12 @@ def test_sum():
 def test_rest():
     calculator = Calculator()
     assert calculator.rest(4, 2) == 2
-    
+
+
 def test_mult():                                               
     calculator = Calculator()                                 
     assert calculator.mult(2, 2) == 4
+
 
 def test_div():                                               
     calculator = Calculator()                                 

@@ -19,6 +19,7 @@ class Calculator:
         self.num_arg1 = num_arg1 
         self.num_arg2 = num_arg2
 
+
     def __is_number(self, num_arg):
         txt_message = (  
             "\nCause: The argument >> " + str(num_arg) +
