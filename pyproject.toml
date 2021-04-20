@@ -8,6 +8,7 @@ authors = ["Monica Nataly <nata.moonk@gmail.com>"]
 python = "^3.9"
 coverage = "^5.5"
 ipython = "^7.22.0"
+jupyterlab = "^3.0.14"
 
 [tool.poetry.dev-dependencies]
 pytest = "^6.2.3"
