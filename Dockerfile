@@ -25,6 +25,9 @@ ENV YOUR_ENV=${YOUR_ENV} \
 # Copy only requirements to cache them in docker layer
 WORKDIR /demo
 
+# Creating folders, and files for a project:
+COPY --chown=admin demo/ /demo/demo
+COPY --chown=admin notebooks/ /demo/notebooks
 COPY --chown=admin poetry.lock pyproject.toml /demo/
 
 # Project initialization:
@@ -32,10 +35,6 @@ RUN pip install "poetry==$POETRY_VERSION" --user \
     && poetry config virtualenvs.create false \
     && poetry install --no-dev --no-interaction --no-ansi
 #   && poetry install $(test "$YOUR_ENV" == production && echo "--no-dev") --no-interaction --no-ansi
-
-# Creating folders, and files for a project:
-COPY --chown=admin demo/ /demo/demo
-COPY --chown=admin notebooks/ /demo/notebooks
 
 # Expose port for jupyter lab
 EXPOSE 8889
