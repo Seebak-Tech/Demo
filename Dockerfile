@@ -31,7 +31,7 @@ WORKDIR /home/admin/demo
 # Creating folders, and files for a project:
 COPY --chown=admin demo/ ./demo
 COPY --chown=admin notebooks/ ./notebooks
-COPY --chown=admin poetry.lock pyproject.toml .
+COPY --chown=admin poetry.lock pyproject.toml ./
 
 # Project initialization:
 RUN pip install "poetry==$POETRY_VERSION" --user \
