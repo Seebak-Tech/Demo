@@ -22,13 +22,16 @@ ENV YOUR_ENV=${YOUR_ENV} \
     PATH=$PATH:/usr/bin:/sbin:/bin:/home/admin/.local/bin \
     PYTHONPATH=/demo
 
+# Create directory work "demo"
+RUN mkdir /home/admin/demo
+
 # Copy only requirements to cache them in docker layer
-WORKDIR /demo
+WORKDIR /home/admin/demo
 
 # Creating folders, and files for a project:
-COPY --chown=admin demo/ /demo/demo
-COPY --chown=admin notebooks/ /demo/notebooks
-COPY --chown=admin poetry.lock pyproject.toml /demo/
+COPY --chown=admin demo/ ./demo
+COPY --chown=admin notebooks/ ./notebooks
+COPY --chown=admin poetry.lock pyproject.toml .
 
 # Project initialization:
 RUN pip install "poetry==$POETRY_VERSION" --user \
