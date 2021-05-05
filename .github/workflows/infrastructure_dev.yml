@@ -59,13 +59,13 @@ jobs:
         role-arn: arn:aws:iam::${{ steps.creds.outputs.aws-account-id }}:role/github-actions-cloudformation-stack-role
         no-fail-on-empty-changeset: "1"
         parameter-overrides: >-
-          repositoryName=dev-img-repository
+          repositoryName=github-actions-dev-img-repository
           
     - name: Build, tag, and push image to Amazon ECR
       id: build-image
       env:
         ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
-        ECR_REPOSITORY: dev-img-repository
+        ECR_REPOSITORY: github-actions-dev-img-repository
         IMAGE_TAG: ${{ github.sha }}
       run: |
         # Build a docker container and
