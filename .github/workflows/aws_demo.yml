@@ -25,6 +25,11 @@
 
 on:
   workflow_dispatch:
+    inputs:
+      repository_name:
+        description: 'The name to use for the repository'     
+        required: true
+        default: demo 
 
 name: Deploy to Amazon ECS
 
@@ -33,12 +38,16 @@ jobs:
     name: Deploy
     runs-on: ubuntu-latest
     environment: production
+    env:
+      ECR_REPOSITORY: github-actions-stack01-${{ github.event.inputs.repository_name }}-repository
+      CLUSTER_STACK_NAME: github-actions-stack02-${{ github.event.inputs.repository_name }}
 
     steps:
     - name: Checkout
       uses: actions/checkout@v2
   
     - name: Configure AWS credentials
+      id: creds
       uses: aws-actions/configure-aws-credentials@v1
       with:
         aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
@@ -53,7 +62,6 @@ jobs:
       id: build-image
       env:
         ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
-        ECR_REPOSITORY: demo
         IMAGE_TAG: ${{ github.sha }}
       run: |
         # Build a docker container and
@@ -68,13 +76,13 @@ jobs:
       uses: aws-actions/amazon-ecs-render-task-definition@v1
       with:
         task-definition: .aws/task-definition.json
-        container-name: demoContainer
+        container-name: Notebook  
         image: ${{ steps.build-image.outputs.image }}
 
     - name: Deploy Amazon ECS task definition
       uses: aws-actions/amazon-ecs-deploy-task-definition@v1
       with:
         task-definition: ${{ steps.task-def.outputs.task-definition }}
-        service: demoService
-        cluster: demo-cluster
+        service: ${{ env.CLUSTER_STACK_NAME }}-ecs-service 
+        cluster: ${{ env.CLUSTER_STACK_NAME }}-cluster 
         wait-for-service-stability: true
