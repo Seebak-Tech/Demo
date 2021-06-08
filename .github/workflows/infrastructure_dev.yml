@@ -59,16 +59,16 @@ jobs:
       id: ecr-repository-stack
       uses: aws-actions/aws-cloudformation-github-deploy@v1
       with:
-        name: github-actions-stack01-${{ github.event.inputs.repository_name }}
+        name: ga-stack01-${{ github.event.inputs.repository_name }}
         template: .aws/cloudformation-templates/ecr_repository_cf.yaml
-        role-arn: arn:aws:iam::${{ steps.creds.outputs.aws-account-id }}:role/github-actions-cloudformation-stack-role
+        role-arn: arn:aws:iam::${{ steps.creds.outputs.aws-account-id }}:role/ga-cloudformation-stack-role
         no-fail-on-empty-changeset: "1"
           
     - name: Build, tag, and push image to Amazon ECR
       id: build-image
       env:
         ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
-        ECR_REPOSITORY: github-actions-stack01-${{ github.event.inputs.repository_name }}-repository
+        ECR_REPOSITORY: ga-stack01-${{ github.event.inputs.repository_name }}-repository
         IMAGE_TAG: ${{ github.sha }}
       run: |
         # Build a docker container and
@@ -92,9 +92,9 @@ jobs:
       id: ecs-cluster-stack
       uses: aws-actions/aws-cloudformation-github-deploy@v1
       with:
-        name: github-actions-stack02-${{ github.event.inputs.repository_name }}
+        name: ga-stack02-${{ github.event.inputs.repository_name }}
         template: .aws/cloudformation-templates/cluster_cf.yaml
-        role-arn: arn:aws:iam::${{ steps.creds.outputs.aws-account-id }}:role/github-actions-cloudformation-stack-role
+        role-arn: arn:aws:iam::${{ steps.creds.outputs.aws-account-id }}:role/ga-cloudformation-stack-role
         no-fail-on-empty-changeset: "1"
         capabilities: "CAPABILITY_NAMED_IAM"
         parameter-overrides: >-
