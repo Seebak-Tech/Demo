@@ -37,7 +37,7 @@ jobs:
       uses: aws-actions/aws-cloudformation-github-deploy@v1
       with:
         name: ga-stack01-${{ github.event.inputs.repository_name }}
-        template: .aws/cloudformation-templates/ecr_repository_cf.yaml
+        template: .aws/cloudformation-templates/ecr_repository.cf.yaml
         role-arn: arn:aws:iam::${{ steps.creds.outputs.aws-account-id }}:role/ga-cloudformation-stack-role
         no-fail-on-empty-changeset: "1"
           
@@ -70,7 +70,7 @@ jobs:
       uses: aws-actions/aws-cloudformation-github-deploy@v1
       with:
         name: ga-stack02-${{ github.event.inputs.repository_name }}
-        template: .aws/cloudformation-templates/cluster_cf.yaml
+        template: .aws/cloudformation-templates/ecs_cluster.cf.yaml
         role-arn: arn:aws:iam::${{ steps.creds.outputs.aws-account-id }}:role/ga-cloudformation-stack-role
         no-fail-on-empty-changeset: "1"
         capabilities: "CAPABILITY_NAMED_IAM"
