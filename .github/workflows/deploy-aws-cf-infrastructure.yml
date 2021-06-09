@@ -6,7 +6,7 @@ on:
       repository_name:
         description: 'The name to use for the repository'     
         required: true
-        default: 'demo'
+        default: 'notebook'
 
 name: Deploy infrastructure on AWS
 
