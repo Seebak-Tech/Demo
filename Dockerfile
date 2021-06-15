@@ -32,6 +32,7 @@ WORKDIR /home/admin/demo
 COPY --chown=admin demo/ ./demo
 COPY --chown=admin notebooks/ ./notebooks
 COPY --chown=admin poetry.lock pyproject.toml ./
+COPY --chown=admin jupyter_server_config.json /home/admin/.jupyter/jupyter_server_config.json
 
 # Project initialization:
 RUN pip install "poetry==$POETRY_VERSION" --user \

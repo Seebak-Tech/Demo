@@ -1,22 +1,21 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-import numbers 
+import numbers
 
 
 class CalcTypeError(Exception):
-    
+
     def __init__(self, message):
-        self.message = message 
-    
+        self.message = message
+
 
 class Calculator:
 
     def __init__(self):
         self.__set_params(0, 0)
 
-
     def __set_params(self, num_arg1, num_arg2):
-        self.num_arg1 = num_arg1 
+        self.num_arg1 = num_arg1
         self.num_arg2 = num_arg2
 
 

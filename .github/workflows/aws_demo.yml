@@ -29,7 +29,7 @@ on:
       repository_name:
         description: 'The name to use for the repository'     
         required: true
-        default: demo 
+        default: notebook 
 
 name: Deploy to Amazon ECS
 
@@ -39,8 +39,8 @@ jobs:
     runs-on: ubuntu-latest
     environment: production
     env:
-      ECR_REPOSITORY: github-actions-stack01-${{ github.event.inputs.repository_name }}-repository
-      CLUSTER_STACK_NAME: github-actions-stack02-${{ github.event.inputs.repository_name }}
+      ECR_REPOSITORY: ga-stack01-${{ github.event.inputs.repository_name }}-repository
+      CLUSTER_STACK_NAME: ga-stack02-${{ github.event.inputs.repository_name }}
 
     steps:
     - name: Checkout
